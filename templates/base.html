@@ -5,8 +5,10 @@
     <title>Title</title>
     <script src="https://unpkg.com/htmx.org@1.9.4"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    {% block styles %} {% endblock %}
 </head>
 <body>
-
+    {% block content %}
+    {% endblock %}
 </body>
 </html>

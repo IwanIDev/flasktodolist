@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% from "todos.html" import createTodo %}
+{% block styles %}
+<style>
+.inputsgrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 0px;
+}
+
+#inputfield1 { grid-area: 1 / 1 / 2 / 3; }
+#inputbutton { grid-area: 1 / 3 / 2 / 4; }
+
+</style>
+{% endblock %}
+{% block content %}
+    <h1>Todo List</h1>
+    <form hx-post="/submit" hx-swap="beforeend" hx-target="#todos" class="container">
+        <div class="inputsgrid">
+            <input id="inputfield1" type="text" placeholder="Todo" name="todo" class="form-control mb-3" />
+            <button id="inputbutton" type="submit" class="btn btn-primary" role="button">Submit</button>
+        </div>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Done</th>
+                <th scope="col">Todo</th>
+            </tr>
+        </thead>
+        <tbody id="todos" hx-target="closest tr" hx-swap="outerHTML swap:0.5s">
+        {% for todo in todos %}
+            {{ createTodo() }}
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
