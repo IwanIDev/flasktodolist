@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% from "todos.html" import createTodo %}
+{% from "todos.html" import createTodo with context %}
 {% block styles %}
 <style>
 .inputsgrid {
@@ -33,7 +33,7 @@
         </thead>
         <tbody id="todos" hx-target="closest tr" hx-swap="outerHTML swap:0.5s">
         {% for todo in todos %}
-            {{ createTodo() }}
+            {{ createTodo(todo) }}
         {% endfor %}
         </tbody>
     </table>
