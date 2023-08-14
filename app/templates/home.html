@@ -16,7 +16,7 @@
 </style>
 {% endblock %}
 {% block content %}
-    <h1>Todo List</h1>
+    <h1>To-do List</h1>
     <form hx-post="/submit" hx-swap="beforeend" hx-target="#todos" class="container">
         <div class="inputsgrid">
             <input id="inputfield1" type="text" placeholder="Todo" name="todo" class="form-control mb-3" />
@@ -31,7 +31,7 @@
                 <th scope="col">Todo</th>
             </tr>
         </thead>
-        <tbody id="todos" hx-target="closest tr" hx-swap="outerHTML swap:0.5s">
+        <tbody id="todos" hx-target="closest tr" hx-swap="outerHTML">
         {% for todo in todos %}
             {{ createTodo(todo.title, todo.id) }}
         {% endfor %}
