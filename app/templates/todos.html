@@ -1,8 +1,19 @@
-{% macro createTodo(todo) %}
+{% macro createTodo(todoName, todoId, value="") %}
 <tr>
-    <td>{{ todo }}</td>
-    <td>test</td>
+    <td>{{ todoName }}</td>
+    <td>
+        <button class="btn primary"
+                hx-get="/edit/{{ todoId }}">
+            Edit
+        </button>
+    </td>
+    <td>
+        <button hx-delete="/delete/{{ todoId }}"
+                class="btn primary">
+            Delete
+        </button>
+    </td>
 </tr>
 {% endmacro %}
 
-{{ createTodo(todo) }}
+{{ createTodo(todoName, todoId) }}

@@ -13,4 +13,13 @@ def submit():
     db.session.add(todo)
     db.session.commit()
 
-    return flask.render_template("todos.html", todo=todo.title)
+    return flask.render_template("todos.html", todoName=todo.title, todoId=todo.id)
+
+
+@app.route("/delete/<int:todoid>", methods=["DELETE"])
+def delete_todo(todoid):
+    todo = Todo.query.get(todoid)
+    db.session.delete(todo)
+    db.session.commit()
+
+    return ""

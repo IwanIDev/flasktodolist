@@ -1,5 +1,6 @@
 import flask
 from flask_sqlalchemy import SQLAlchemy
+from dataclasses import asdict
 
 app = flask.Flask(__name__)
 
@@ -20,4 +21,4 @@ with app.app_context():
 @app.route('/')
 def hello_world():  # put application's code here
     todos = db.session.query(models.Todo).all()
-    return flask.render_template("home.html", todos=[todo.title for todo in todos])
+    return flask.render_template("home.html", todos=todos)
